@@ -19,6 +19,6 @@ func getUserInput() (amount float64) {
 	return amount
 }
 
-func calculateAmount(amount, float64, sourceCurrency, targetCurrency string) float64 {
+func calculateAmount(amount float64, sourceCurrency, targetCurrency string) float64 {
 	// ...
 }
