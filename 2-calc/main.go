@@ -91,7 +91,5 @@ func calculateMed(slice []float64) float64 {
 	if n % 2 == 1 {
 		return slice[n / 2]
 	}
-
-	fmt.Println(slice[n / 2 - 1], slice[n / 2])
 	return (slice[n / 2 - 1] + slice[n / 2]) / 2
 }
