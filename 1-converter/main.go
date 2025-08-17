@@ -6,12 +6,14 @@ import (
 	"strconv"
 )
 
-const USD_TO_EUR = 0.86
-const USD_TO_RUB = 79.74
-const EUR_TO_USD = 1 / USD_TO_EUR
-const RUB_TO_USD = 1 / USD_TO_RUB
-const EUR_TO_RUB = USD_TO_RUB / USD_TO_EUR
-const RUB_TO_EUR = 1 / EUR_TO_RUB
+var rates = map[string]float64 {
+	"USD_TO_EUR": 0.85,
+	"USD_TO_RUB": 79.72,
+	"EUR_TO_USD": 1.17,
+	"RUB_TO_USD": 0.013,
+	"EUR_TO_RUB": 93.32,
+	"RUB_TO_EUR": 0.011,
+}
 
 func main() {
 	fmt.Println("___ Currency Converter ___")
@@ -106,20 +108,7 @@ func checkAcceptableCurrency(curr string) bool {
 }
 
 func convertCurrencies(amount float64, from, to string) float64 {
-	switch {
-	case from == "USD" && to == "EUR":
-		return amount * USD_TO_EUR
-	case from == "USD" && to == "RUB":
-		return amount * USD_TO_RUB
-	case from == "EUR" && to == "USD":
-		return amount * EUR_TO_USD
-	case from == "RUB" && to == "USD":
-		return amount * RUB_TO_USD
-	case from == "EUR" && to == "RUB":
-		return amount * EUR_TO_RUB
-	case from == "RUB" && to == "EUR":
-		return amount * RUB_TO_EUR
-	default:
-		return 0
-	}
+	rate := from + "_TO_" + to
+	result := amount * rates[rate]
+	return result
 }
