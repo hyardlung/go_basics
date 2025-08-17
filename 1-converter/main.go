@@ -6,7 +6,8 @@ import (
 	"strconv"
 )
 
-var rates = map[string]float64 {
+type stringsFloat = map[string]float64
+var rates = stringsFloat {
 	"USD_TO_EUR": 0.85,
 	"USD_TO_RUB": 79.72,
 	"EUR_TO_USD": 1.17,
