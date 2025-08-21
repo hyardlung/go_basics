@@ -63,7 +63,7 @@ func main() {
 		break
 	}
 
-	result := convertCurrencies(amount, sourceCurrency, targetCurrency)
+	result := convertCurrencies(amount, sourceCurrency, targetCurrency, &rates)
 
 	fmt.Println("____________________________________________")
 	fmt.Printf("%v %s at the current exchange rate is %.2f %s.", amount, sourceCurrency, result, targetCurrency)
@@ -108,8 +108,8 @@ func checkAcceptableCurrency(curr string) bool {
 	return false
 }
 
-func convertCurrencies(amount float64, from, to string) float64 {
+func convertCurrencies(amount float64, from, to string, rates *stringsFloat) float64 {
 	rate := from + "_TO_" + to
-	result := amount * rates[rate] // using global map of rates
+	result := amount * (*rates)[rate]
 	return result
 }
