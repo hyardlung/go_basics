@@ -110,6 +110,6 @@ func checkAcceptableCurrency(curr string) bool {
 
 func convertCurrencies(amount float64, from, to string) float64 {
 	rate := from + "_TO_" + to
-	result := amount * rates[rate]
+	result := amount * rates[rate] // using global map of rates
 	return result
 }
