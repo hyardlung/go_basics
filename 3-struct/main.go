@@ -4,6 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"time"
+	"3-struct/bins"
+	"3-struct/api"
+	"3-struct/file"
+	"3-struct/storage"
 )
 
 type Bin struct {
