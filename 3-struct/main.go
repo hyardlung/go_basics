@@ -1,25 +1,14 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"time"
 	"3-struct/bins"
-	"3-struct/api"
-	"3-struct/file"
-	"3-struct/storage"
+	// "3-struct/api"
+	// "3-struct/file"
+	// "3-struct/storage"
 )
 
-type Bin struct {
-	id        string
-	private   bool
-	createdAt time.Time
-	name      string
-}
 
-type BinList struct {
-	bins []Bin
-}
 
 func main() {
 	id := promptData("Enter bin's id")
@@ -27,15 +16,16 @@ func main() {
 	isPrivate := private == "y"
 	name := promptData("Enter bin's name")
 
-	newBin, err := newBin(id, isPrivate, name)
+	newBin, err := bins.NewBin(id, isPrivate, name)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	binList := BinList{}
+	binList := bins.BinList{}
 	if newBin != nil {
-		addNewBin(&binList, *newBin)
-		fmt.Printf("\nYour bin list now has %d bin(s)", len(binList.bins))
+		bins.AddNewBin(&binList, *newBin)
+		fmt.Println(newBin)
+		fmt.Printf("\nYour bin list now has %d bin(s)", len(binList.Bins))
 	}
 }
 
@@ -44,22 +34,4 @@ func promptData(prompt string) string {
 	var res string
 	fmt.Scanln(&res)
 	return res
-}
-
-func newBin(id string, private bool, name string) (*Bin, error) {
-	if name == "" {
-		return nil, errors.New("name can't be empty")
-	}
-	newBin := &Bin{
-		id: id,
-		private: private || false,
-		createdAt: time.Now(),
-		name: name,
-	}
-
-	return newBin, nil
-}
-
-func addNewBin(binList *BinList, bin Bin) {
-	binList.bins = append(binList.bins, bin)
 }
